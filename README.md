@@ -1,7 +1,7 @@
 <h1><strong>✏️ Pipex : </strong></h1>
-<p><i>&nbsp;&nbsp;&nbsp;Pipex is a project that re-creates in C the way two commands are piped together via | in the shell </i><p><br>
+<p><i>Pipex is a project that re-creates in C the way two commands are piped together via | in the shell </i><p><br>
 <h1>💡 About the project : </h1>
-<p>&nbsp;&nbsp;&nbsp;This project will let you discover in detail a UNIX mechanism that you already know
+<p>This project will let you discover in detail a UNIX mechanism that you already know
 by using it in your program.</p> <br><br>
 
 <h1>💯 Final Grade : </h1> <br>
@@ -23,7 +23,7 @@ by using it in your program.</p> <br><br>
   <li>
   <p>Handle multiple pipes :</p>
   <p>This :</p>
-  <p> $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2</p>
+  <p> &nbsp;$> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2</p>
   <p>Should behave like this :</p>
   <p> $> < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2</p>
   </li>
