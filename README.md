@@ -23,15 +23,15 @@ by using it in your program.</p> <br><br>
   <li>
   <p>Handle multiple pipes :</p>
   <p>This :</p>
-  <p>./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2</p>
+  <p> $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2</p>
   <p>Should behave like this :</p>
-  <p>< file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2</p>
+  <p> $> < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2</p>
   </li>
   <li>
     <p>Support « and » when the first parameter is "here_doc" :</p>
     <p>This :</p>
-    <p> ./pipex here_doc LIMITER cmd cmd1 file</p>
+    <p> $> ./pipex here_doc LIMITER cmd cmd1 file</p>
     <p>Should behave like this :</p>
-    <p>cmd1 << LIMITER | cmd2 >> file</p>
+    <p> $> cmd1 << LIMITER | cmd2 >> file</p>
   </li>
 </ul>
