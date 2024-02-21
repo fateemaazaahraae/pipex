@@ -23,7 +23,7 @@ by using it in your program.</p> <br><br>
   <li>
   <p>Handle multiple pipes :</p>
   <p>This :</p>
-  <p> &nbsp;$> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2</p>
+  <pre>    $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2</pre>
   <p>Should behave like this :</p>
   <p> $> < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2</p>
   </li>
