@@ -7,7 +7,7 @@ by using it in your program.</p> <br><br>
 <h1>💯 Final Grade : </h1> <br>
 
 
-<h1> - Description pf mandatory part :</h1>
+<h1>Description pf mandatory part :</h1>
 <p>Your program will be executed as follows:</p>
 <p>./pipex file1 cmd1 cmd2 file2</p>
 <p>It must take 4 arguments:</p>
