@@ -73,7 +73,7 @@ On success, 0 is returned. On error, -1 is returned, and errno is set appropriat
   <ul>
     <li>
       <h4>What is access ? </h4>
-      <p>In C, the access() function is used to check whether a file exists and whether the calling process has permissions to access it in a specified mode. It allows you to perform access checks on files and directories in a portable way across different operating systems.</p>
+      <p>In C, the access() function is used to check whether a file exists and whether the calling process has permissions to access it in a specified mode. It allows you to perform access checks on files and directories in a portable way across different operating systems. You must include <strong>unistd.h</strong> header file.</p>
       <p>It takes two arguments. The first argument takes the path to the directory/file and the second argument takes flags R_OK, W_OK, X_OK or F_OK.</p>
       <ul>
         <li>
@@ -97,6 +97,7 @@ On success, 0 is returned. On error, -1 is returned, and errno is set appropriat
   <ul>
     <li>
       <h4> What is Dup2 ? </h4>
+      <p>In C, the dup2() function is used to duplicate an existing file descriptor onto another file descriptor. It's commonly used for file descriptor redirection, especially in scenarios like setting up input/output redirection for child processes after forking. You must include <strong>unistd.h</strong> header file.</p>
     </li>
   </ul>
 </li>
