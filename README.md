@@ -21,14 +21,14 @@ by using it in your program.</p> <br><br>
 <p>You will get extra points if you:</p>
 <ul>
   <li>
-  <p>Handle multiple pipes :<i>(15 points)</i></p>
+  <p>Handle multiple pipes :<strong><i>(15 points)</i></strong></p>
   <p>This :</p>
   <pre>    $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2</pre>
   <p>Should behave like this :</p>
   <pre>    $> < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2</pre>
   </li>
   <li>
-    <p>Support « and » when the first parameter is "here_doc" :<i>(10 points)</i></p>
+    <p>Support « and » when the first parameter is "here_doc" :<strong><i>(10 points)</i></strong></p>
     <p>This :</p>
     <pre>    $> ./pipex here_doc LIMITER cmd cmd1 file</pre>
     <p>Should behave like this :</p>
