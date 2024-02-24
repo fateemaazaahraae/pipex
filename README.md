@@ -56,7 +56,7 @@ To optimize memory utilization, fork() employs the (COW) copy-on-write technique
       </li>
     </ul>
   </li>
-
+</li>
   <li>
     <h2>Pipe : </h2>
     <ol>
