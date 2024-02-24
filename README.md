@@ -46,6 +46,12 @@ by using it in your program.</p> <br><br>
     <h3>How Fork works ?</h3>
     <p>When fork() is employed, the OS duplicates the parent process entirely, creating a new child process. This includes memory, open file descriptors, and other relevant attributes. However, the child process follows its own execution path and has its own PID.<br>
 To optimize memory utilization, fork() employs the (COW) copy-on-write technique. Initially, both parent and child processes share the same physical memory pages. To prevent unintended modifications, a separate copy is generated when either process attempts to alter a shared memory page.</p>
+    <ul>
+      <li>
+        <h4>What is COW ?</h4>
+        <p>Copy-on-Write (COW) is a memory optimization technique where memory pages are shared between processes until one process tries to write to them. Then, and only then, does the operating system create a separate copy of that memory page for the process making the change. This helps save memory and improve efficiency when creating new processes.</p>
+      </li>
+    </ul>
   </li>
 </ol>
 
