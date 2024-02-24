@@ -40,7 +40,7 @@ by using it in your program.</p> <br><br>
 <ol>
   <li>
     <h3>What is Fork ?</h3>
-    <p>`fork()` is a system call in C programming that creates a new process by duplicating the calling process. After fork() is called, we have two processes : the parent process and the child process. The child process is a duplicate of the parent process. The child process inherits the memory space, file descriptors, and other attributes of the parent process with its own unique process ID (PID). Both processes continue executing from the point where fork() was called, but they have different return values from fork(): the parent receives the PID of the child process, while the child receives a return value of 0.</p>
+    <p>`fork()` is a system call in C programming that creates a new process by duplicating the calling process. After fork() is called, we have two processes : the parent process and the child process. The child process is a duplicate of the parent process. The child process inherits the memory space, file descriptors, and other attributes of the parent process with its own unique process ID (PID). Both processes continue executing from the point where fork() was called, but they have different return values from fork(): the parent receives the PID of the child process, while the child receives a return value of 0 or negative value (usually -1) means the creation of the child process was unsuccessful ❌.</p>
   </li>
 </ol>
 
