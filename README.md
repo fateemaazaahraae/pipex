@@ -35,3 +35,6 @@ by using it in your program.</p> <br><br>
     <pre>    $> cmd1 << LIMITER | cmd2 >> file</pre>
   </li>
 </ul>
+<br><br>
+<h1>Fork : </h1>
+<h3>What is Fork ?</h3>
