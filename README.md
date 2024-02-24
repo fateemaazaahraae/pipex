@@ -52,9 +52,19 @@ To optimize memory utilization, fork() employs the (COW) copy-on-write technique
     <ul>
       <li>
         <h5>What is COW ?</h5>
-        <p>Copy-on-Write (COW) is a memory optimization technique where memory pages are shared between processes until one process tries to write to them. Then, and only then, does the operating system create a separate copy of that memory page for the process making the change. This helps save memory and improve efficiency when creating new processes.</p>
+        <p>Copy-on-Write (COW) is a memory optimization technique where memory pages are shared between processes until one process tries to write to them. Then, and only then, does the operating system create a separate copy of that memory page for the process making the change. This helps save memory and improve efficiency when creating new processes.It takes as argument an array of 2 int (Ex : pipefd[2]). The array pipefd is used to return two file descriptors referring to the ends of the pipe. pipefd[0] refers to the read end of the pipe. pipefd[1] refers to the write end of the pipe. Data written to the write end of the pipe is buffered by the kernel until it is read from the read end of the pipe. <br> On success, 0 is returned. On error, -1 is returned, and errno is set appropriately.</p>
       </li>
     </ul>
+  </li>
+
+  <li>
+    <h2>Pipe : </h2>
+    <ol>
+      <li>
+        <h4>What is Pipe ? </h4>
+        <p>In C, a pipe is a form of inter-process communication (IPC) that allows data to be passed between two processes. It acts as a unidirectional communication channel, typically used for communication between a parent process and its child process or between two related processes.</p>
+      </li>
+    </ol>
   </li>
 </ol>
 
