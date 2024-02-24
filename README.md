@@ -43,7 +43,7 @@ by using it in your program.</p> <br><br>
     <ol>
       <li>
         <h4>What is Fork ?</h4>
-      <p>`fork()` is a system call in C programming that creates a new process by duplicating the calling process. After fork() is called, we have two processes : the parent process and the child process. You must include the unistd.h header file. The child process is a duplicate of the parent process. The child process inherits the memory space, file descriptors, and other         attributes of the parent process with its own unique process ID (PID). Both processes continue executing from the point where fork() was called, but they have different return values from fork(): the parent receives the PID of the child process, while the child receives a return value of 0 or negative value (usually -1) means the creation of the child process was               unsuccessful ❌.</p>
+      <p>`fork()` is a system call in C programming that creates a new process by duplicating the calling process. After fork() is called, we have two processes : the parent process and the child process. You must include the <strong>unistd.h</strong> header file. The child process is a duplicate of the parent process. The child process inherits the memory space, file descriptors, and other         attributes of the parent process with its own unique process ID (PID). Both processes continue executing from the point where fork() was called, but they have different return values from fork(): the parent receives the PID of the child process, while the child receives a return value of 0 or negative value (usually -1) means the creation of the child process was               unsuccessful ❌.</p>
       </li>
       <li>
     <h4>How Fork works ?</h4>
@@ -63,7 +63,7 @@ To optimize memory utilization, fork() employs the (COW) copy-on-write technique
     <ol>
       <li>
         <h4>What is Pipe ? </h4>
-        <p>In C, a pipe is a form of inter-process communication (IPC) that allows data to be passed between two processes. It acts as a unidirectional communication channel, typically used for communication between a parent process and its child process or between two related processes. You must include the unistd.h header file. <br> It takes an array of 2 int as an argument (Ex : pipefd(fd[2]) ). The array pipefd is used to return two file descriptors referring to the ends of the pipe. pipefd[0] refers to the read end of the pipe. pipefd[1] refers to the write end of the pipe. Data written to the write end of the pipe is buffered by the kernel until it is read from the read end of the pipe
+        <p>In C, a pipe is a form of inter-process communication (IPC) that allows data to be passed between two processes. It acts as a unidirectional communication channel, typically used for communication between a parent process and its child process or between two related processes. You must include the <strong>unistd.h</strong> header file. <br> It takes an array of 2 int as an argument (Ex : pipefd(fd[2]) ). The array pipefd is used to return two file descriptors referring to the ends of the pipe. pipefd[0] refers to the read end of the pipe. pipefd[1] refers to the write end of the pipe. Data written to the write end of the pipe is buffered by the kernel until it is read from the read end of the pipe
 On success, 0 is returned. On error, -1 is returned, and errno is set appropriately.</p>
       </li>
     </ol>
