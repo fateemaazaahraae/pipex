@@ -36,22 +36,26 @@ by using it in your program.</p> <br><br>
   </li>
 </ul>
 <br><br>
-<h1>Fork : </h1>
+<h1>Functions used : </h1>
+<ol>
+  <h2>Fork : </h2>
 <ol>
   <li>
-    <h3>What is Fork ?</h3>
+    <h4>What is Fork ?</h4>
     <p>`fork()` is a system call in C programming that creates a new process by duplicating the calling process. After fork() is called, we have two processes : the parent process and the child process. You must include the <unistd.h> header file. The child process is a duplicate of the parent process. The child process inherits the memory space, file descriptors, and other attributes of the parent process with its own unique process ID (PID). Both processes continue executing from the point where fork() was called, but they have different return values from fork(): the parent receives the PID of the child process, while the child receives a return value of 0 or negative value (usually -1) means the creation of the child process was unsuccessful ❌.</p>
   </li>
   <li>
-    <h3>How Fork works ?</h3>
+    <h4>How Fork works ?</h4>
     <p>When fork() is employed, the OS duplicates the parent process entirely, creating a new child process. This includes memory, open file descriptors, and other relevant attributes. However, the child process follows its own execution path and has its own PID.<br>
 To optimize memory utilization, fork() employs the (COW) copy-on-write technique. Initially, both parent and child processes share the same physical memory pages. To prevent unintended modifications, a separate copy is generated when either process attempts to alter a shared memory page.</p>
     <ul>
       <li>
-        <h4>What is COW ?</h4>
+        <h5>What is COW ?</h5>
         <p>Copy-on-Write (COW) is a memory optimization technique where memory pages are shared between processes until one process tries to write to them. Then, and only then, does the operating system create a separate copy of that memory page for the process making the change. This helps save memory and improve efficiency when creating new processes.</p>
       </li>
     </ul>
   </li>
 </ol>
+</ol>
+
 
