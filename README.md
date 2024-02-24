@@ -74,6 +74,7 @@ On success, 0 is returned. On error, -1 is returned, and errno is set appropriat
     <li>
       <h4>What is access ? </h4>
       <p>In C, the access() function is used to check whether a file exists and whether the calling process has permissions to access it in a specified mode. It allows you to perform access checks on files and directories in a portable way across different operating systems.</p>
+      <p>It takes two arguments. The first argument takes the path to the directory/file and the second argument takes flags R_OK, W_OK, X_OK or F_OK.</p>
       <ul>
         <li>
           <p><strong>F_OK flag</strong> : Used to check for the existence of file.</p>
