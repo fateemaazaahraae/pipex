@@ -38,9 +38,8 @@ by using it in your program.</p> <br><br>
 <br><br>
 <h1>Functions used : </h1>
 <ol>
-  <h2>Fork : </h2>
-<ol>
   <li>
+    <h2>Fork : </h2>
     <h4>What is Fork ?</h4>
     <p>`fork()` is a system call in C programming that creates a new process by duplicating the calling process. After fork() is called, we have two processes : the parent process and the child process. You must include the <unistd.h> header file. The child process is a duplicate of the parent process. The child process inherits the memory space, file descriptors, and other attributes of the parent process with its own unique process ID (PID). Both processes continue executing from the point where fork() was called, but they have different return values from fork(): the parent receives the PID of the child process, while the child receives a return value of 0 or negative value (usually -1) means the creation of the child process was unsuccessful ❌.</p>
   </li>
@@ -55,7 +54,7 @@ To optimize memory utilization, fork() employs the (COW) copy-on-write technique
       </li>
     </ul>
   </li>
-</ol>
-</ol>
+  </li>
+
 
 
