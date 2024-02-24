@@ -45,7 +45,7 @@ by using it in your program.</p> <br><br>
   <li>
     <h3>How Fork works ?</h3>
     <p>When fork() is employed, the OS duplicates the parent process entirely, creating a new child process. This includes memory, open file descriptors, and other relevant attributes. However, the child process follows its own execution path and has its own PID.<br>
-To optimize memory utilization, fork() employs the copy-on-write technique. Initially, both parent and child processes share the same physical memory pages. To prevent unintended modifications, a separate copy is generated when either process attempts to alter a shared memory page.</p>
+To optimize memory utilization, fork() employs the (COW) copy-on-write technique. Initially, both parent and child processes share the same physical memory pages. To prevent unintended modifications, a separate copy is generated when either process attempts to alter a shared memory page.</p>
   </li>
 </ol>
 
