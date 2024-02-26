@@ -37,6 +37,7 @@ by using it in your program.</p> <br><br>
 </ul>
 <br><br>
 <h1>Functions used : </h1>
+<p>You are allowed to use several functions in this project. You already know some of them like write, ft_printf, malloc, free and all the functions from your libft. However, other important functions that have never been used before will be essential to the success of this project. Let's look at them together.</p>
 <ol>
   <li>
     <h2>Fork : </h2>
