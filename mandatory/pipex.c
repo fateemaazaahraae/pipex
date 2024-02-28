@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 09:24:39 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/02/18 09:38:26 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/02/28 16:00:00 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,9 @@ int	ft_open(char *file, int n)
 	int	fd;
 
 	if (n == 0)
-	{
 		fd = open(file, O_RDONLY);
-		if (fd == -1)
-			p_err("Error");
-	}
 	else
-	{
-		fd = open(file, O_RDWR | O_TRUNC | O_CREAT, 0777);
-		if (fd == -1)
-			p_err("Error");
-	}
+		fd = open(file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	return (fd);
 }
 
@@ -80,25 +72,24 @@ int	main(int ac, char **av, char **env)
 	t_pipex	pipex;
 
 	if (ac != 5)
-		return (put_err(ERR_INPUT));
+		ft_putendl_fd("Please enter 5 arguments.", NULL, 2, 1);
 	parce_cmd(av);
 	pipex.infile = ft_open(av[1], 0);
 	pipex.outfile = ft_open(av[ac - 1], 1);
 	if (pipe(pipex.pipe_fd) == -1)
-		p_err(ERR_PIPE);
+		p_err("Error");
 	pipex.all_path = find_path("PATH=", env);
 	pipex.paths = ft_split(pipex.all_path, ':');
+	if (errno == 13)
+		pipex.index = 1;
 	pipex.pid1 = fork();
 	if (pipex.pid1 == 0)
 		first_child(pipex, av, env);
-	pipex.pid2 = fork();
-	if (pipex.pid2 == 0)
-		second_child(pipex, av, env);
-	// waitpid(-1, NULL, 0);
 	wait(NULL);
-	wait(NULL);
-	parent_clean(&pipex);
-	if (!get_command_path(pipex.paths, av[3]))
+	if (pipex.outfile == -1)
+		ft_putendl_fd("zsh: no such file or directory: ", av[4], 2, 1);
+	parent_process(pipex, av, env);
+	if (!get_command_path(pipex.paths, av[3], 1))
 		exit(127);
 	return (0);
 }

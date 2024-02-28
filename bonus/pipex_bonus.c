@@ -6,28 +6,38 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 09:48:02 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/02/18 10:06:10 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/02/28 16:24:28 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	child_process(char *cmd, char **env)
+void	p_error(char *err)
+{
+	perror(err);
+	exit(1);
+}
+
+void	child_process(t_pipex pipex, char **av, char **env)
 {
 	pid_t	pid;
 	int		pipe_fd[2];
 
 	if (pipe(pipe_fd) == -1)
-		p_error(ERR_PIPE);
+		p_error("Error");
 	pid = fork();
-	if (pid == -1)
-		exit(0);
-	else if (pid == 0)
+	if (pipex.i == 2 && pipex.infile == -1 && pid == 0 && pipex.index == 0)
+		ft_putendl_fd("zsh: no such file or directory: ", av[1], 2, 1);
+	else if (pipex.i == 2 && pipex.infile == -1 && pid == 0 && pipex.index == 1)
+		ft_putendl_fd("zsh: permission denied: ", av[1], 2, 1);
+	else if (pipex.i == 2 && pipex.infile != -1 && pid == 0)
+		dup2(pipex.infile, 0);
+	if (pid == 0)
 	{
 		close(pipe_fd[0]);
 		dup2(pipe_fd[1], 1);
 		close(pipe_fd[1]);
-		ft_execute(cmd, env);
+		ft_execute(av[pipex.i], env);
 	}
 	else
 	{
@@ -42,54 +52,34 @@ int	ft_open(char *file, int n)
 	int	fd;
 
 	if (n == 0)
-	{
 		fd = open(file, O_RDONLY);
-		if (fd == -1)
-			p_err("Error");
-	}
 	else if (n == 1)
-	{
-		fd = open(file, O_RDWR | O_TRUNC | O_CREAT, 0777);
-		if (fd == -1)
-			p_err("Error");
-	}
+		fd = open(file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	else
-	{
-		fd = open(file, O_RDWR | O_APPEND | O_CREAT, 0777);
-		if (fd == -1)
-			p_err("Error");
-	}
+		fd = open(file, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	return (fd);
 }
 
 int	main(int ac, char **av, char **env)
 {
-	int	i;
-	int	infile;
-	int	outfile;
+	t_pipex	pipex;
 
 	if (ac < 5)
-		return (put_error(ERR_ARG));
-	if (ft_strncmp(av[1], "here_doc", 8) == 0)
+		ft_putendl_fd("Please enter at least 5 argumets.", NULL, 2, 1);
+	set_up(ac, av, &pipex);
+	if (errno == 13)
+		pipex.index = 1;
+	while (pipex.i < ac - 2)
 	{
-		if (ac < 6)
-			return (put_error("Enter 6 arguments"));
-		i = 3;
-		outfile = ft_open(av[ac - 1], 2);
-		here_doc_run(av);
+		child_process(pipex, av, env);
+		pipex.i++;
 	}
-	else
-	{
-		i = 2;
-		infile = ft_open(av[1], 0);
-		outfile = ft_open(av[ac - 1], 1);
-		dup2(infile, 0);
-	}
-	while (i < ac - 2)
-		child_process(av[i++], env);
-	wait(NULL);
-	if (!find_cmd_path(av[ac - 2], env))
-		exit(127);
-	dup2(outfile, 1);
+	waitpid(-1, NULL, 0);
+	if (pipex.outfile == -1)
+		ft_putendl_fd("zsh: no such file or directory: ", av[ac - 1], 2, 1);
+	dup2(pipex.outfile, 1);
+	close(pipex.outfile);
 	ft_execute(av[ac - 2], env);
+	if (!find_cmd_path(av[ac - 2], env, 1))
+		exit(127);
 }

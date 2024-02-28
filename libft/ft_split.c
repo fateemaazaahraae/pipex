@@ -6,20 +6,11 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:32:51 by fbazaz            #+#    #+#             */
-/*   Updated: 2023/11/23 14:45:41 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/02/19 10:45:32 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/**
- * ft_split - Allocates and returns an array of strings obtained by
- * 			splitting ’s’ using the character ’c’ as a delimiter.
- * @s: The string to be split.
- * @c: The delimiter character.
- *
- * Return: The array of new strings resulting from the split or NULL.
- */
 
 static int	count_word(char const *s, char c)
 {
@@ -111,18 +102,3 @@ char	**ft_split(char const *s, char c)
 	}
 	return (array);
 }
-
-/* #include <stdio.h>
-
-int	main(void)
-{
-	char *str = "This is a test string";
-	char **words = ft_split(str, ' ');
-
-	if (words == NULL)
-		printf("Error: ft_split returned NULL\n");
-	for (int i = 0; words[i] != NULL; i++)
-	{
-		printf("%s\n", words[i]);
-	}
-} */

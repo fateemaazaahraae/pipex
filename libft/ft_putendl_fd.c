@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 12:47:32 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/02/28 12:49:56 by fbazaz           ###   ########.fr       */
+/*   Created: 2024/02/22 12:05:29 by fbazaz            #+#    #+#             */
+/*   Updated: 2024/02/26 12:27:05 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_putendl_fd(char *s, char *cmd, int fd, int status)
 {
-	size_t	i;
+	int	i;
+	int	j;
 
+	if (fd < 0)
+		return ;
 	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	while (s[i])
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		write(fd, &s[i], 1);
 		i++;
 	}
-	return (0);
+	if (cmd)
+	{
+		j = 0;
+		while (cmd[j])
+		{
+			write(fd, &cmd[j], 1);
+			j++;
+		}
+	}
+	write(fd, "\n", 1);
+	if (status != -1)
+		exit(status);
+	return ;
 }

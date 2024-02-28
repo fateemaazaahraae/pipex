@@ -6,24 +6,17 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:03:25 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/02/17 11:09:13 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/02/28 16:06:57 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*get_command_path(char **paths, char *cmd)
+char	*check_cmd(char **paths, char *cmd)
 {
 	char	*tmp;
 	char	*command;
 
-	if (!paths)
-		return (NULL);
-	if (cmd[0] == '.')
-	{
-		if (access(cmd, X_OK) == 0)
-			return (cmd);
-	}
 	while (*paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
@@ -35,6 +28,25 @@ char	*get_command_path(char **paths, char *cmd)
 		paths++;
 	}
 	return (NULL);
+}
+
+char	*get_command_path(char **paths, char *cmd, int n)
+{
+	if (!paths)
+		return (NULL);
+	if (cmd[0] == '/' || cmd[0] == '.')
+	{
+		if (access(cmd, X_OK) == 0)
+			return (cmd);
+		else
+		{
+			if (n == 0)
+				ft_putendl_fd("zsh: no such file or directory: ", cmd, 2, 127);
+			else
+				return (NULL);
+		}
+	}
+	return (check_cmd(paths, cmd));
 }
 
 void	child_clean(t_pipex *pipex)
@@ -53,26 +65,28 @@ void	child_clean(t_pipex *pipex)
 
 void	first_child(t_pipex pipex, char **av, char **env)
 {
+	if (pipex.infile == -1 && pipex.index == 0)
+		ft_putendl_fd("zsh: no such file or directory: ", av[1], 2, 1);
+	else if (pipex.index == 1)
+		ft_putendl_fd("zsh: permission denied: ", av[1], 2, 1);
 	dup2(pipex.infile, 0);
 	close(pipex.infile);
 	dup2(pipex.pipe_fd[1], 1);
 	close(pipex.pipe_fd[1]);
 	close(pipex.pipe_fd[0]);
 	pipex.cmds = ft_split(av[2], ' ');
-	pipex.cmd = get_command_path(pipex.paths, pipex.cmds[0]);
+	pipex.cmd = get_command_path(pipex.paths, pipex.cmds[0], 0);
 	if (!pipex.cmd)
 	{
+		ft_putendl_fd("zsh: command not found: ", pipex.cmds[0], 2, -1);
 		child_clean(&pipex);
-		put_err(ERR_CMD);
-		write(2, av[2], ft_strlen(av[2]));
-		write(2, "\n", 1);
-		exit(1);
+		exit(127);
 	}
 	if (execve(pipex.cmd, pipex.cmds, env) == -1)
-		p_err(ERR_EXEC);
+		p_err("Error");
 }
 
-void	second_child(t_pipex pipex, char **av, char **env)
+void	parent_process(t_pipex pipex, char **av, char **env)
 {
 	dup2(pipex.pipe_fd[0], 0);
 	close(pipex.pipe_fd[0]);
@@ -80,15 +94,14 @@ void	second_child(t_pipex pipex, char **av, char **env)
 	dup2(pipex.outfile, 1);
 	close(pipex.outfile);
 	pipex.cmds = ft_split(av[3], ' ');
-	pipex.cmd = get_command_path(pipex.paths, pipex.cmds[0]);
+	pipex.cmd = get_command_path(pipex.paths, pipex.cmds[0], 0);
 	if (!pipex.cmd)
 	{
+		ft_putendl_fd("zsh: command not found: ", pipex.cmds[0], 2, -1);
 		child_clean(&pipex);
-		put_err(ERR_CMD);
-		write(2, av[3], ft_strlen(av[3]));
-		write(2, "\n", 1);
-		exit(1);
+		exit(127);
 	}
+	parent_clean(&pipex);
 	if (execve(pipex.cmd, pipex.cmds, env) == -1)
-		p_err(ERR_EXEC);
+		p_err("Error");
 }

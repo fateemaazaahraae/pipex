@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 09:35:27 by fbazaz            #+#    #+#             */
-/*   Updated: 2023/11/22 10:48:12 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/02/19 10:45:36 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,3 @@ char	*ft_strdup(const char *src)
 	copy[i] = '\0';
 	return (copy);
 }
-
-/* #include <stdio.h>
-#include <string.h>
-
-int	main(void)
-{
-	//printf("%s", ft_strdup("hellllo"));
-	printf("%s", strdup("hellllo"));
-} */

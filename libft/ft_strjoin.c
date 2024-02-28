@@ -6,20 +6,11 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:08:15 by fbazaz            #+#    #+#             */
-/*   Updated: 2023/11/22 10:57:27 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/02/19 10:45:24 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/**
- * ft_strjoin - Allocates and returns a new  string, which is the result of
- * 				the concatenation of ’s1’ and ’s2’.
- * @s1: The prefix string.
- * @s2: The suffix string.
- *
- * Return: The new string or NULL.
- */
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -49,11 +40,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	newstring[len1] = '\0';
 	return (newstring);
 }
-
-/* #include <stdio.h>
-int	main(void)
-{
-	char *res;
-	res = ft_strjoin("hello", "world");
-	printf("%s", res);
-} */

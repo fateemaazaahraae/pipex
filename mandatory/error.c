@@ -6,17 +6,11 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 11:13:39 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/02/17 11:28:48 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/02/26 12:18:38 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-int	put_err(char *err)
-{
-	write(2, err, ft_strlen(err));
-	return (1);
-}
 
 void	p_err(char *err)
 {

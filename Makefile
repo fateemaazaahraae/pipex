@@ -5,27 +5,43 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/21 15:04:18 by fbazaz            #+#    #+#              #
-#    Updated: 2024/02/18 09:29:15 by fbazaz           ###   ########.fr        #
+#    Created: 2024/02/15 12:36:59 by fbazaz            #+#    #+#              #
+#    Updated: 2024/02/28 10:17:19 by fbazaz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-CFILE = ft_strlen.c ft_strncmp.c ft_strdup.c ft_strjoin.c ft_split.c 
-OFILE = $(CFILE:.c=.o)
+NAME = pipex
+CFILE = mandatory/pipex.c\
+		mandatory/error.c\
+		mandatory/processes.c\
+		libft/libft.a
+
+CBONUS = bonus/execute.c\
+		 bonus/pipex_bonus.c\
+		 bonus/here_doc.c\
+		 bonus/get_next_line.c\
+		 libft/libft.a
+
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 all : $(NAME)
 
-$(NAME) : $(OFILE)
-		  ar rc $(NAME) $(OFILE)
+$(NAME) :
+		make -C libft
+		$(CC) $(CFLAGS) $(CFILE) -o $(NAME)
 
 clean :
-	rm -f $(OFILE)
+	make clean -C libft
+	rm -rf $(NAME)
 
 fclean : clean
-	rm -f $(NAME)
+	make fclean -C libft
+	rm -rf $(NAME)
+
+bonus : fclean
+		make all -C libft
+		$(CC) $(CFLAGS) $(CBONUS) -o $(NAME)
 
 re : fclean all
 
