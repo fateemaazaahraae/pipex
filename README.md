@@ -5,7 +5,7 @@
 by using it in your program.</p> <br><br>
 
 <h1>💯 Final Grade : </h1> <br>
-
+<img width="269" alt="Screen Shot 2024-03-06 at 11 41 17 AM" src="https://github.com/fateemaazaahraae/pipex/assets/133344215/8aa8f74d-e23f-44d8-9255-c6105fad8d5e">
 
 <h1>Description of mandatory part :</h1>
 <p>Your program will be executed as follows:</p>
