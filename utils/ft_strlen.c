@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 12:05:29 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/02/26 12:27:05 by fbazaz           ###   ########.fr       */
+/*   Created: 2023/11/01 10:43:22 by fbazaz            #+#    #+#             */
+/*   Updated: 2024/03/01 14:21:42 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "utils.h"
 
-void	ft_putendl_fd(char *s, char *cmd, int fd, int status)
+size_t	ft_strlen(const char *s)
 {
-	int	i;
-	int	j;
+	size_t	i;
 
-	if (fd < 0)
-		return ;
 	i = 0;
 	while (s[i])
-	{
-		write(fd, &s[i], 1);
 		i++;
-	}
-	if (cmd)
-	{
-		j = 0;
-		while (cmd[j])
-		{
-			write(fd, &cmd[j], 1);
-			j++;
-		}
-	}
-	write(fd, "\n", 1);
-	if (status != -1)
-		exit(status);
-	return ;
+	return (i);
 }

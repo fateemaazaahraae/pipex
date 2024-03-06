@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 09:52:11 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/02/24 14:00:37 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/03/04 09:54:26 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*ft_new_str(char *str)
 	return (free(str), p);
 }
 
-char	*get_next_line(int fd, int ac)
+char	*get_next_line(int fd)
 {
 	static char	*str;
 	char		*line;
@@ -97,12 +97,7 @@ char	*get_next_line(int fd, int ac)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	i = 3;
-	while (i < ac - 2)
-	{
-		write(1, "pipe ", 5);
-		i++;
-	}
-	write(1, "heredoc> ", 9);
+	write(1, "> ", 2);
 	str = ft_read_line(fd, str);
 	if (!str)
 		return (NULL);

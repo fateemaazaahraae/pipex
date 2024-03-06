@@ -6,11 +6,11 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:32:51 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/02/19 10:45:32 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/03/01 14:21:20 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
 static int	count_word(char const *s, char c)
 {

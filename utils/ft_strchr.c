@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 10:22:34 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/02/17 10:01:45 by fbazaz           ###   ########.fr       */
+/*   Created: 2024/02/19 11:39:32 by fbazaz            #+#    #+#             */
+/*   Updated: 2024/03/01 14:21:24 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "utils.h"
 
-void	p_error(char *err)
+char	*ft_strchr(char *s, int c)
 {
-	perror(err);
-	exit(1);
-}
+	int		i;
+	int		len;
+	char	*str;
 
-int	put_error(char *err)
-{
-	write(2, err, ft_strlen(err));
-	return (1);
+	i = 0;
+	len = ft_strlen(s);
+	str = (char *)s;
+	while (i <= len)
+	{
+		if (str[i] == (char)c)
+			return (&str[i]);
+		i++;
+	}
+	return (NULL);
 }

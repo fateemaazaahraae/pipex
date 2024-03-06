@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbazaz <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 11:39:32 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/02/19 11:39:43 by fbazaz           ###   ########.fr       */
+/*   Created: 2023/11/02 09:35:27 by fbazaz            #+#    #+#             */
+/*   Updated: 2024/03/01 14:21:34 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strdup(const char *src)
 {
 	int		i;
-	int		len;
-	char	*str;
+	size_t	len;
+	char	*copy;
 
+	len = ft_strlen(src);
+	copy = malloc(sizeof(char) * (len + 1));
+	if (copy == NULL)
+		return (NULL);
 	i = 0;
-	len = ft_strlen(s);
-	str = (char *)s;
-	while (i <= len)
+	while (src[i])
 	{
-		if (str[i] == (char)c)
-			return (&str[i]);
+		copy[i] = src[i];
 		i++;
 	}
-	return (NULL);
+	copy[i] = '\0';
+	return (copy);
 }
